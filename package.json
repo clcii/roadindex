@@ -1,0 +1,14 @@
+{
+  "name": "roadindex",
+  "version": "0.0.1",
+  "description":"Mobile first easy access to emergency roadway information offiline ready web application",
+  "repository": "https://github.com/clcii/roadindex",
+  "author": "Chad Cornett<chad.cornett@gmail.com>",
+  "scripts":{
+    "start": "http-server -a localhost -p 8000 -c-1 ./app"
+    },
+    "dependencies":{
+    "http-server": "^0.9.0"
+      },
+    "license":"MIT"
+    }

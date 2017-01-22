@@ -1,0 +1,7 @@
+<!--<div id='roadsviewcontent' layout="column" flex>-->
+  <div ng-controller='RoadsCtrl as vm' layout="column" flex>
+    <roadletters ng-if="vm.level == 1" layout='column' flex></roadletters>
+    <roadlist ng-if="vm.level == 2" layout='column' flex></roadlist>
+    <roaddetail ng-if="vm.level == 3"></roaddetail>
+  </div>
+<!--</div>-->
