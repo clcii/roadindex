@@ -1,13 +1,11 @@
+
 /* app css stylesheet */
+/*
 html,body{
   height: 100%;
 
 }
-#screenFiller {
-    position: absolute;
-    top: 0; right: 0; bottom: 0; left: 0;
-    overflow: hidden;
-}
+
 
 .menu {
   list-style: none;
@@ -33,22 +31,28 @@ html,body{
   padding-right: 0.3em;
 }
 body{
-background-color: linen;
+  background-color: linen;
 }
+
 #switchboardbuttons button{
   width: 100%;
   padding-top: 20px;
   height: 180px;
-}
-#switchboardbuttons a{
-  padding: 5px;
-}
+}*/
+/*
 #switchboardbuttons button .material-icons, #switchboardbuttons button .img-icon{
   font-size: 100px;
   width: 100px;
 }
 .switchboardbutton{
   height: 169;
+}
+*/
+#screenFiller {
+    position: absolute;
+    top: 0; right: 0; bottom: 0; left: 0;
+    overflow: hidden;
+    background-color: linen;
 }
 roadletters{
   width: 100%;
@@ -63,19 +67,46 @@ roadletters{
 .contentarea, #roadlist{
   overflow-y: auto;
 }
-my-main-switchboard .material-icons{
+/*my-main-switchboard .material-icons{
   width:100%;
   height:100%;
   font-size: 128px;
-}
+}*/
 figure md-grid-tile-footer figcaption h3 {
   margin: 0;
   font-weight: 700;
   width: 100%;
-  text-align: center; }
+  text-align: center; 
+  }
   #buttonarea{
     padding-right: 20px;
   }
   #buttonarea div{
     margin:5px;
+  }
+  .font_48{
+    font-size: 48px;
+    position: absolute;
+    left: 0;
+    top: 0;
+    right: 24;
+    bottom: 72
+  }
+  .swiconspace{
+    padding-bottom: 48px;
+  }
+  
+  my-main-switchboard md-grid-tile{
+    background-color: white;
+  }
+  
+    my-main-switchboard md-grid-list{
+    margin:10px;
+  }
+  .md-raised:not([disabled]) {
+    box-shadow: 0 2px 5px 0 rgba(0, 0, 0, 0.26);
+    
+  }
+  .md-raised:hover {
+    cursor: hand; 
   }
