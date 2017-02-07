@@ -79,10 +79,7 @@ figure md-grid-tile-footer figcaption h3 {
   text-align: center; 
   }
   #buttonarea{
-    padding-right: 20px;
-  }
-  #buttonarea div{
-    margin:5px;
+    /*padding-right: 20px;*/
   }
   .font_48{
     font-size: 48px;
@@ -102,7 +99,7 @@ figure md-grid-tile-footer figcaption h3 {
   
     my-main-switchboard md-grid-list{
     margin:10px;
-  }
+    }
   .md-raised:not([disabled]) {
     box-shadow: 0 2px 5px 0 rgba(0, 0, 0, 0.26);
     

@@ -1,16 +1,16 @@
-(function() {
   'use strict';
 
-  angular
-    .module('myApp.Panel',['ngMaterial'])
-    .controller('PanelController', myPanelController)
+  var app = angular.module('RoadsIndex');
+
+
+    app.controller('PanelController', myPanelController)
     .directive('infopanel', myPanelDirective);
   function myPanelDirective(){
     // Usage: ...
     //this._mdPanel = $mdPanel;
     var directive = {
       restrict: 'ACE',
-      templateUrl: 'infoPanel/infopanel.html',
+      templateUrl: 'components/infoPanel/infopanel.html',
       scope: {
       },
       link: link,
@@ -36,4 +36,4 @@
 
   }
 
-})();
+

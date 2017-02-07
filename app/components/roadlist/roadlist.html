@@ -1,7 +1,7 @@
 <div layout='column' flex>
 
     <div layout='row' style='min-height:48px;' >
-        <md-button ng-click="vm.previouslevel()" layout-align="center center" layout="row"><i class="material-icons">arrow_back</i>Back</md-button>
+        <md-button ng-click="vm.goBack()" layout-align="center center" layout="row"><i class="material-icons">arrow_back</i>Back</md-button>
         <div flex></div>
         <div layout-align="center center" layout="row">
             <span>{{vm.currentletter}} </span>
@@ -11,7 +11,8 @@
     </div>
     <div id='roadlist' flex>
       <div layout='column' ng-repeat="roadname in vm.currentRoads | filter: road.search" flex>
-          <md-button class='md-raised' value={{roadname.ID}} ng-click='vm.getRoadDirections(roadname.ID)'>{{roadname.NAME}}</md-button>
+          <md-button class='md-raised' value={{roadname.ID}} href="{{'#!'+vm.currentlocation +'/:' + roadname.ID}}">{{roadname.NAME}}</md-button>
+          <!--+'/:roadname.ID'-->
       </div>
     </div>
 

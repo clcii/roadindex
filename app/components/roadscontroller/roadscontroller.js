@@ -2,12 +2,13 @@
   'use strict';
 
   angular
-    .module('Roads.RoadsController',['ngMaterial'])
+    .module('RoadsIndex')
     .controller('RoadsCtrl', MyController, []);
 
-    MyController.$inject = ['$scope','RoadsService'];
+    MyController.$inject = ['$scope','$routeParams','$location','RoadsService'];
 
-  function MyController($scope, RoadsService){
+  function MyController($scope, $routeParams, $location, RoadsService){
+
 
     /*jshint validthis: true */
     var self = this;
@@ -17,18 +18,36 @@
     var currentRoad = Array;
     var currentletter = '';
     var currentID = '';
-    var bshowinfo = 1;
-    self.currentletter = currentletter;
+    var InfoShowing = false;
+    var roadgpslink = '';
 
+    self.roadgpslink = roadgpslink;
+    
+    self.currentletter = currentletter;
     self.level = level;
-    self.nextlevel = nextlevel;
-    self.previouslevel = previouslevel;
+    //self.nextlevel = nextlevel;
+    //self.previouslevel = previouslevel;
     self.getRoadsbyLetter = getRoadsbyLetter;
     self.getRoadDirections = getRoadDirections;
-    self.currentRoads = currentRoads;
+    self.goBack = goBack;
+    self.currentlocation = $location.path();
+    //self.currentRoads = currentRoads;
+    
     self.currentRoad = currentRoad;
     self.currentID = currentID;
-    self.showinfo = showinfo;
+    self.toggleInfo = toggleInfo;
+    self.InfoShowing = InfoShowing;
+    console.log($routeParams);
+    if ($routeParams['roadletter']){
+      self.currentletter = $routeParams['roadletter'].substring(1);
+    }
+    
+    if ($routeParams['roadId']){
+      self.currentID = $routeParams['roadId'].slice(1);
+    }
+    self.currentRoads = getRoadsbyLetter();
+    self.currentRoad = getRoadDirections();
+    
     //self.roadletters = roadletters;
     RoadsService.getAllLetters().then(function(data){
       self.roadletters = data.data;
@@ -38,11 +57,14 @@
     function activate(){
       self.level = 1;
     }
-    function getRoadsbyLetter(letter){
-      self.currentletter = letter;
+    function goBack(){
+      window.history.back();
+    }
+
+    function getRoadsbyLetter(){
+      //this.currentletter = letter;
       RoadsService.getAllRoadsNames().then(function(data){
         self.currentRoads = data.data.filter(whereFirstLetterIs);
-        self.level++;
       });
 
     }
@@ -54,47 +76,45 @@
         return value.NAME.substring(0,1) == self.currentletter;
       }
     }
-    function getRoadDirections(id){
-      self.currentid = id;
-      console.log('Road ID ='+ id);
-      RoadsService.getRoadDirections().then(function(data){
-        self.currentRoad = data.data[id];
-        self.level++;
-      });
+    function getRoadDirections(){
+      if(self.currentID){
+        console.log('Road ID ='+ self.currentID);
+        RoadsService.getRoadDirections().then(function(data){
+          self.currentRoad = data.data[self.currentID];
+          console.log(self.currentRoad);
+          self.roadgpslink = getgpslink(self.currentRoad.lat, self.currentRoad.lng);
+        });
+      }
+
     };
-
-    function nextlevel(){
-      if(self.level < 3){
-        self.level++;
+    function getgpslink(lat, lng){
+      // If it's an iPhone..
+    if ((navigator.platform.indexOf("iPhone") !== -1) || (navigator.platform.indexOf("iPod") !== -1)) {
+      function iOSversion() {
+        if (/iP(hone|od|ad)/.test(navigator.platform)) {
+          // supports iOS 2.0 and later: <http://bit.ly/TJjs1V>
+          var v = (navigator.appVersion).match(/OS (\d+)_(\d+)_?(\d+)?/);
+          return [parseInt(v[1], 10), parseInt(v[2], 10), parseInt(v[3] || 0, 10)];
+        }
       }
+      var ver = iOSversion() || [0];
+
+      if (ver[0] >= 6) {
+        protocol = 'maps://';
+      } else {
+        protocol = 'http://';
+
+      }
+      return protocol + 'maps.apple.com/maps?daddr=' + lat + ',' + lng + '&amp;ll=';
+    }
+    else {
+      return 'http://maps.google.com?daddr=' + lat + ',' + lng + '&amp;ll=';
+    }
+
 
     }
-    function previouslevel(){
-      if(self.level>1){
-          self.level--;
-      }
-
-    }
-    function showinfo(){
-       console.log('showinfo clicked');
-    //   var position = this._mdPanel.newPanelPosition()
-    // .absolute()
-    // .center();
-    //   var config = {
-    //     attachTo: angular.element(document.body),
-    //     controller: PanelDialogCtrl,
-    //     controllerAs: 'ctrl',
-    //     disableParentScroll: this.disableParentScroll,
-    //     templateUrl: 'panel.tmpl.html',
-    //     hasBackdrop: true,
-    //     panelClass: 'demo-dialog-example',
-    //     position: position,
-    //     trapFocus: true,
-    //     zIndex: 150,
-    //     clickOutsideToClose: true,
-    //     escapeToClose: true,
-    //     focusOnOpen: true
-    //   };
+    function toggleInfo(){
+       this.InfoShowing = !(this.InfoShowing);
     }
   }
 

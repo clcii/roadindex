@@ -1,9 +1,14 @@
 
 'use strict';
-var app = angular.module('myApp');
+var app = angular.module('RoadsIndex');
 
 app.directive('roadlist', function () {
     return{
-      templateUrl:'roadlist/roadlist.html'
+      templateUrl:'components/roadlist/roadlist.html',
+     // controllerAs: 'lc',
+     // controller: listController,
     }
   })
+  
+
+

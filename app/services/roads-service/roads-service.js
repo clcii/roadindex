@@ -2,7 +2,7 @@
   'use strict';
 
   angular
-    .module('Roads.RoadsService',[])
+    .module('RoadsIndex')
     .service('RoadsService', myservice);
 
   myservice.$inject = ['$http'];

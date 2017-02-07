@@ -1,9 +1,24 @@
-'use strict';
+(function() {
+  'use strict';
 
-angular.module('myApp.roadsview', ['ngRoute'])
+  angular
+    .module('RoadsIndex')
+    .controller('RoadsView', roadsview);
 
-.config(['$routeProvider', function($routeProvider) {
-  $routeProvider.when('/roads', {
-    templateUrl: 'roadsview/roadsview.html'
-  });
-}])
+    MyController.$inject = ['$scope'];
+
+function roadsview($scope){
+
+}
+
+})();
+
+
+
+//angular.module('myApp.roadsview', ['ngRoute'])
+
+//.config(['$routeProvider', function($routeProvider) {
+  //$routeProvider.when('/roads', {
+    //templateUrl: 'roadsview/roadsview.html'
+  //});
+//}])

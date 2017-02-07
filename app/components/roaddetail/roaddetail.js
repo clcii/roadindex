@@ -1,9 +1,9 @@
 
 'use strict';
-var app = angular.module('myApp');
+var app = angular.module('RoadsIndex');
 
 app.directive('roaddetail', function () {
     return{
-      templateUrl:'roaddetail/roaddetail.html'
+      templateUrl:'components/roaddetail/roaddetail.html'
     }
   })

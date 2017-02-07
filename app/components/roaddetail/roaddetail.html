@@ -1,35 +1,41 @@
 <div layout='row'>
-<md-button ng-click="vm.previouslevel()"><md-icon>arrow_back</md-icon>Back</md-button>
-<div flex></div>
-<div><h1 class='md-title'>{{vm.currentRoad.name}}</h1></div>
-<div flex></div>
+    <div>
+      <md-button ng-click="vm.goBack();"><md-icon>arrow_back</md-icon>Back</md-button>
+    </div>
+    <div flex></div>
+    <div>
+      <h1 class='md-title'>{{vm.currentRoad.name}}</h1>
+    </div>
+    <div flex></div>
 </div>
  <md-divider></md-divider>
-<div flex layout="column">
+<div ng-controller="infoPanelControl as pc">
   <md-card>
     <md-card-header>
       <md-card-avatar>
         <md-icon class="md-avatar-icon">directions</md-icon>
       </md-card-avatar>
       <md-card-header-text>
-        <h1 class="md-title">DIRECTIONS</h1>
+          <h1 class="md-title">DIRECTIONS</h1>        
       </md-card-header-text>
     </md-card-header>
-    {{vm.currentRoad.directions}}
+    <md-card-content>
+      <p>
+        {{vm.currentRoad.directions}}
+      </p>
+    </md-card-content>
   </md-card>
   <md-divider></md-divider>
-  <div id='buttonarea' layout-xs="column" layout-gt-xs="row">
-    <div flex>
-      <md-button class='md-raised md-padding' style='width:100%;' ng-click="vm.showinfo()">
+  <div id='buttonarea' layout-xs="column" layout-gt-xs="row" layout-align="center">
+      <md-button class='md-raised md-padding' ng-href="{{vm.roadgpslink}}" flex-gt-xs>
+        <!--ng-click="pc.showDialog($event)"-->
         <div flex></div>
         <div class="preview-glyphs">
             <md-icon>navigation</md-icon>
         </div>
         <div><span>GPS</span></div>
       </md-button>
-    </div>
-    <div flex>
-      <md-button class='md-raised' style='width:100%;'>
+      <md-button class='md-raised md-padding' flex-gt-xs>
         <div flex></div>
         <div class="preview-glyphs">
           <div flex></div>
@@ -38,9 +44,7 @@
         </div>
         <div><span>Addresses</span></div>
       </md-button>
-    </div>
-    <div flex>
-      <md-button class='md-raised' style='width:100%;'>
+      <md-button class='md-raised md-padding' flex-gt-xs>
         <div flex></div>
         <div class="preview-glyphs">
             <md-icon>more_horiz</md-icon>
@@ -50,10 +54,7 @@
         </div>
 
       </md-button>
-
-    </div>
-    <div flex>
-      <md-button class='md-raised' style='width:100%;'>
+      <md-button class='md-raised md-padding' flex-gt-xs>
         <div flex></div>
         <div class="preview-glyphs">
             <md-icon>share</md-icon>
@@ -62,7 +63,6 @@
             <span>Send to ..</span>
         </div>
       </md-button>
-    </div>
   </div>
 </div>
-<infopanel></infopanel>
+

@@ -1,0 +1,11 @@
+{
+  "name": "roadindex",
+  "description": "Mobile first easy access to emergency roadway information offiline ready web application",
+  "version": "0.0.1",
+  "homepage": "https://github.com/clcii/roadindex",
+  "license": "MIT",
+  "private": true,
+  "dependencies": {
+    "ngmap": "1.18.0"
+  }
+}
